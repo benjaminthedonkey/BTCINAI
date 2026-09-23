@@ -27,3 +27,7 @@ python3 -m http.server 8000
 ## Deploying
 
 GitHub Pages serves `main` at the repo root. Pushing to `main` publishes.
+
+## License
+
+[MIT](LICENSE) © benjaminthedonkey
