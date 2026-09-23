@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bitcoin is not an investment</title>
+<meta name="description" content="What 99% of people get wrong about Bitcoin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;800;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #E4E8E1;
+    --surface: #F2F4EF;
+    --ink: #10302A;
+    --ink-soft: #3E5A53;
+    --rule: #B7C2B9;
+    --orange: #E8830F;
+    --orange-ink: #9A4F00;
+    --gold: #A88A3D;
+    --display: "Big Shoulders Display", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F1D1A;
+      --surface: #152724;
+      --ink: #E3EAE4;
+      --ink-soft: #A7B8B1;
+      --rule: #2C4540;
+      --orange: #F7931A;
+      --orange-ink: #F7A94A;
+      --gold: #C9AB5C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1D1A;
+    --surface: #152724;
+    --ink: #E3EAE4;
+    --ink-soft: #A7B8B1;
+    --rule: #2C4540;
+    --orange: #F7931A;
+    --orange-ink: #F7A94A;
+    --gold: #C9AB5C;
+  }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  *, *::before, *::after { box-sizing: inherit; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+  /* Hero: the acronym, spelled out */
+  .hero {
+    min-height: 92vh;
+    min-height: 92svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem clamp(1.25rem, 5vw, 4rem) 3rem;
+    max-width: 78rem;
+    margin: 0 auto;
+  }
+  .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2.2vw, 1.4rem);
+    color: var(--ink-soft);
+    margin: 0 0 1.5rem;
+  }
+  .acronym {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 clamp(0.4rem, 1.4vw, 1.2rem);
+    margin: 0;
+    font-family: var(--display);
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.01em;
+  }
+  .acronym .word {
+    display: inline-flex;
+    font-size: clamp(3.4rem, 11.5vw, 10rem);
+    white-space: nowrap;
+  }
+  .acronym .initial { color: var(--ink); }
+  .acronym .rest {
+    color: var(--ink);
+    display: inline-block;
+    overflow: hidden;
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 900ms cubic-bezier(.2,.7,.1,1), opacity 600ms ease;
+  }
+  .acronym.spelled .rest { max-width: 12ch; opacity: 1; }
+  .acronym .abbr {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 3ch;
+    transition: max-width 700ms cubic-bezier(.2,.7,.1,1), opacity 400ms ease;
+  }
+  .acronym.spelled .abbr { max-width: 0; opacity: 0; }
+  .acronym .word.btc .initial,
+  .acronym .word.btc .abbr,
+  .acronym .word.btc .rest { color: var(--orange); }
+  .hero-sub {
+    margin: 2.25rem 0 0;
+    max-width: 36rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    color: var(--ink-soft);
+  }
+  .toggle {
+    margin-top: 1.5rem;
+    align-self: flex-start;
+    font: 600 1rem/1 var(--serif);
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--ink);
+    border-radius: 2rem;
+    padding: 0.7rem 1.2rem;
+    cursor: pointer;
+  }
+  .toggle:hover { background: var(--ink); color: var(--bg); }
+
+  /* The claims */
+  .claims {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 2rem clamp(1.25rem, 5vw, 2rem) 5rem;
+  }
+  .claims h2, .gold h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1;
+    margin: 0 0 2.5rem;
+  }
+  .claim {
+    margin: 0;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--rule);
+  }
+  .claim:last-child { border-bottom: 1px solid var(--rule); }
+  .claim .tag {
+    display: block;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    color: var(--orange-ink);
+    margin-bottom: 0.35rem;
+  }
+  .claim p {
+    margin: 0;
+    font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+    line-height: 1.45;
+  }
+
+  /* Gold's cardinal sin: framed like the paper certificate it criticises */
+  .gold-wrap {
+    padding: 1rem clamp(1rem, 4vw, 2rem) 6rem;
+  }
+  .gold {
+    max-width: 40rem;
+    font-size: 1.05rem;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1.5px solid var(--gold);
+    outline: 1px solid var(--gold);
+    outline-offset: -9px;
+    padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.5rem);
+  }
+  .gold h2 { color: var(--ink); margin-bottom: 0.25rem; font-size: clamp(1.5rem, 3.5vw, 2rem); }
+  .gold .au {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0 0 1.25rem;
+  }
+  .gold .certificate {
+    margin: 1.25rem 0;
+    padding: 0.75rem 1rem;
+    border: 1px dashed var(--gold);
+    font-style: italic;
+    text-align: center;
+  }
+  .questions {
+    list-style: none;
+    margin: 1.25rem 0;
+    padding: 0;
+  }
+  .questions li {
+    font-weight: 600;
+    line-height: 1.4;
+    padding: 0.2rem 0;
+  }
+  .gold .closing { margin-bottom: 0; font-weight: 600; }
+
+  .closing-section {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 5vw, 2rem) 5rem;
+  }
+  .closing-section h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1;
+    margin: 0 0 1.5rem;
+  }
+  .closing-section .cta {
+    font-size: clamp(1.2rem, 2.4vw, 1.4rem);
+    line-height: 1.45;
+    margin: 0 0 1.5rem;
+    padding-left: 1.25rem;
+    border-left: 4px solid var(--orange);
+  }
+  .closing-section .signoff { font-style: italic; color: var(--ink-soft); margin: 0; }
+
+  .donate {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 5vw, 2rem) 5rem;
+  }
+  .donate h2 {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1;
+    margin: 0 0 1rem;
+  }
+  .donate > p { margin: 0 0 2rem; color: var(--ink-soft); }
+  .donate-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+  }
+  .qr-link { display: block; flex: 0 0 auto; line-height: 0; }
+  .qr { width: 11rem; height: 11rem; border: 1.5px solid var(--rule); }
+  .donate-info { flex: 1 1 16rem; min-width: 0; }
+  .addr-label { margin: 0 0 0.4rem; font-weight: 600; }
+  .addr {
+    display: block;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.95rem;
+    word-break: break-all;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 0.75rem 1rem;
+    user-select: all;
+  }
+  .donate-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+  .donate-actions .toggle { margin-top: 0; text-decoration: none; display: inline-block; }
+  .copy-status { min-height: 1.5em; margin: 0.5rem 0 0; font-size: 0.95rem; color: var(--ink-soft); }
+
+  footer {
+    text-align: center;
+    padding: 0 1.25rem 3rem;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .acronym .rest, .acronym .abbr { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <p class="kicker">What 99% of people get wrong:</p>
+  <h1 class="acronym" id="acronym" aria-label="Bitcoin is not an investment">
+    <span class="word btc"><span class="initial">B</span><span class="abbr">TC</span><span class="rest">itcoin</span></span>
+    <span class="word"><span class="initial">I</span><span class="rest">s</span></span>
+    <span class="word"><span class="initial">N</span><span class="rest">ot</span></span>
+    <span class="word"><span class="initial">A</span><span class="rest">n</span></span>
+    <span class="word"><span class="initial">I</span><span class="rest">nvestment</span></span>
+  </h1>
+  <p class="hero-sub">Read the letters as BTCINAI. Here is what that means, one claim at a time.</p>
+  <button class="toggle" id="toggle" type="button" aria-pressed="true">Show the acronym</button>
+</header>
+
+<main>
+  <section class="claims" aria-labelledby="claims-title">
+    <h2 id="claims-title">Why Bitcoin is not an investment</h2>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>Name one company in your portfolio that has the potential to transform the world, making it a safer and more just place. Bitcoin doesn't belong on that list. It's not a company, and it's not an investment.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>Think of Bitcoin as a scarce metal with a magical property: it can travel at the speed of light.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>It's a new financial system, built on money no government can print. When you can't print your way out, wasteful spending gets much harder to hide, and much harder to justify.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>It's a protocol, like the ones that run the internet. Nobody invests in email. They use it. Bitcoin is built the same way, in layers, and the layers on top make it fast and cheap to send.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>It's a new way of self-custody that was not possible before. You can carry your savings across a border as 12 words in your head. That puts into question the need for banks and bankers.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>Governments have tried to ban it. Exchanges can delist it. The network keeps running anyway. Bitcoin is code, and code is speech, like music or art.</p>
+    </div>
+
+    <div class="claim">
+      <span class="tag">BTCINAI</span>
+      <p>It does not answer to a person, a board of directors or a government. Bitcoin itself has no marketing budget, and yet it has convinced millions of people.</p>
+    </div>
+  </section>
+
+  <div class="gold-wrap">
+    <section class="gold" aria-labelledby="gold-title">
+      <h2 id="gold-title">Gold's cardinal sin</h2>
+      <p class="au">Atomic number 79</p>
+
+      <p>Gold is a metal, and it is the only thing that comes close to Bitcoin. The reason gold can't be the basis of a global financial system is its inability to travel electronically.</p>
+
+      <p>The best you can do is create a piece of paper that says:</p>
+
+      <p class="certificate">"This is worth 1 oz of gold."</p>
+
+      <p>Then digitize it and send that instead. Now you have solved one problem and created five that are worse:</p>
+
+      <ul class="questions">
+        <li>Who keeps the gold?</li>
+        <li>How much does it cost to store it?</li>
+        <li>Who creates the papers?</li>
+        <li>Are we sure it's real gold?</li>
+        <li>What is the ratio of papers to gold?</li>
+      </ul>
+
+      <p class="closing">We have come down this path already, and I think you know where it leads.</p>
+    </section>
+  </div>
+
+  <section class="closing-section" aria-labelledby="cta-title">
+    <h2 id="cta-title">So what do you do with it?</h2>
+    <p class="cta">Stop trading it. Stop pricing it in dollars. Stop leveraging it. Save in it, the way you would save in money.</p>
+    <p class="signoff">Whether you think I'm right or wrong, no one paid me to make this page.</p>
+  </section>
+  <section class="donate" aria-labelledby="donate-title">
+    <h2 id="donate-title">Donate</h2>
+    <p>If this page made you think, you can send a few sats to keep it running.</p>
+    <div class="donate-body">
+      <a class="qr-link" href="bitcoin:BC1QG2KL7KMNFHZDYZUX325T6RHVNPPQ8ELW0GE2RQ" aria-label="Open in your Bitcoin wallet"><svg class="qr" viewBox="0 0 33 33" role="img" aria-label="QR code for the Bitcoin donation address" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path d="M2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM27 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM18 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM30 3h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM21 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM28 4h1v1h-1zM30 4h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM21 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM27 5h1v1h-1zM28 5h1v1h-1zM30 5h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM11 6h1v1h-1zM13 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM30 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM21 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM30 7h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM14 9h1v1h-1zM16 9h1v1h-1zM20 9h1v1h-1zM22 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM20 10h1v1h-1zM23 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM29 10h1v1h-1zM30 10h1v1h-1zM6 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM28 11h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM2 13h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM17 13h1v1h-1zM21 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM30 13h1v1h-1zM3 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM12 14h1v1h-1zM13 14h1v1h-1zM15 14h1v1h-1zM16 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM27 14h1v1h-1zM30 14h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM2 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM20 16h1v1h-1zM21 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM28 16h1v1h-1zM30 16h1v1h-1zM5 17h1v1h-1zM6 17h1v1h-1zM7 17h1v1h-1zM9 17h1v1h-1zM11 17h1v1h-1zM12 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM28 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM21 18h1v1h-1zM23 18h1v1h-1zM25 18h1v1h-1zM26 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM2 19h1v1h-1zM3 19h1v1h-1zM4 19h1v1h-1zM6 19h1v1h-1zM7 19h1v1h-1zM11 19h1v1h-1zM23 19h1v1h-1zM26 19h1v1h-1zM28 19h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM11 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM28 20h1v1h-1zM30 20h1v1h-1zM2 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM7 21h1v1h-1zM9 21h1v1h-1zM11 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM19 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM25 21h1v1h-1zM26 21h1v1h-1zM28 21h1v1h-1zM30 21h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM23 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM29 22h1v1h-1zM30 22h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM22 23h1v1h-1zM26 23h1v1h-1zM27 23h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM7 24h1v1h-1zM8 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM15 24h1v1h-1zM19 24h1v1h-1zM20 24h1v1h-1zM22 24h1v1h-1zM24 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM10 25h1v1h-1zM11 25h1v1h-1zM12 25h1v1h-1zM15 25h1v1h-1zM19 25h1v1h-1zM22 25h1v1h-1zM26 25h1v1h-1zM29 25h1v1h-1zM2 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM17 26h1v1h-1zM21 26h1v1h-1zM22 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM30 26h1v1h-1zM2 27h1v1h-1zM4 27h1v1h-1zM5 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM10 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM17 27h1v1h-1zM18 27h1v1h-1zM20 27h1v1h-1zM22 27h1v1h-1zM24 27h1v1h-1zM26 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM2 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM12 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM29 28h1v1h-1zM30 28h1v1h-1zM2 29h1v1h-1zM8 29h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM14 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM30 29h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM5 30h1v1h-1zM6 30h1v1h-1zM7 30h1v1h-1zM8 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM16 30h1v1h-1zM17 30h1v1h-1zM20 30h1v1h-1zM22 30h1v1h-1zM24 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1z" fill="#000"/></svg></a>
+      <div class="donate-info">
+        <p class="addr-label">Bitcoin address</p>
+        <code class="addr" id="addr">bc1qg2kl7kmnfhzdyzux325t6rhvnppq8elw0ge2rq</code>
+        <div class="donate-actions">
+          <button type="button" class="toggle" id="copy">Copy address</button>
+          <a class="toggle" href="bitcoin:BC1QG2KL7KMNFHZDYZUX325T6RHVNPPQ8ELW0GE2RQ">Open in wallet</a>
+        </div>
+        <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>BTCINAI</footer>
+
+<script>
+  (function () {
+    var acronym = document.getElementById('acronym');
+    var toggle = document.getElementById('toggle');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function set(spelled) {
+      acronym.classList.toggle('spelled', spelled);
+      toggle.setAttribute('aria-pressed', spelled ? 'true' : 'false');
+      toggle.textContent = spelled ? 'Show the acronym' : 'Spell it out';
+    }
+
+    // Start as the bare acronym, then spell it out once.
+    set(false);
+    if (reduce) {
+      set(true);
+    } else {
+      setTimeout(function () { set(true); }, 900);
+    }
+
+    toggle.addEventListener('click', function () {
+      set(!acronym.classList.contains('spelled'));
+    });
+
+    var copyBtn = document.getElementById('copy');
+    var addrEl = document.getElementById('addr');
+    var status = document.getElementById('copy-status');
+    function selectAddr() {
+      var r = document.createRange(); r.selectNodeContents(addrEl);
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+    }
+    copyBtn.addEventListener('click', function () {
+      var text = addrEl.textContent.trim();
+      function ok() { status.textContent = 'Address copied.'; copyBtn.textContent = 'Copied'; setTimeout(function(){ copyBtn.textContent = 'Copy address'; }, 2000); }
+      function fallback() {
+        selectAddr();
+        var done = false;
+        try { done = document.execCommand('copy'); } catch (e) {}
+        status.textContent = done ? 'Address copied.' : 'Address selected. Press Ctrl+C or Cmd+C to copy it.';
+        if (done) ok();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(ok, fallback);
+      } else { fallback(); }
+    });
+  })();
+</script>
+</body>
+</html>
