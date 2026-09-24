@@ -261,6 +261,27 @@
   }
   .donate-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
   .donate-actions .toggle { margin-top: 0; text-decoration: none; display: inline-block; }
+  .contact-card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--orange);
+    padding: 1.5rem;
+    margin: 0 0 3.5rem;
+  }
+  .contact-card .addr { background: var(--bg); }
+  .contact-note {
+    margin: 1rem 0 0;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+  .donate-sub-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    line-height: 1;
+    margin: 0 0 0.6rem;
+  }
+  .donate-sub-lead { margin: 0 0 1.75rem; color: var(--ink-soft); font-size: 0.95rem; }
   .copy-status { min-height: 1.5em; margin: 0.5rem 0 0; font-size: 0.95rem; color: var(--ink-soft); }
 
   footer {
@@ -363,16 +384,30 @@
     <p class="cta">Stop trading it. Stop pricing it in dollars. Stop leveraging it. Save in it, the way you would save in money.</p>
     <p class="signoff">Whether you think I'm right or wrong, no one paid me to make this page.</p>
   </section>
-  <section class="donate" aria-labelledby="donate-title">
-    <h2 id="donate-title">Donate</h2>
-    <p>If this page made you think, you can send a few sats to keep it running.</p>
+  <section class="donate" aria-labelledby="contact-title">
+    <h2 id="contact-title">Drop a line</h2>
+    <p>If this page made you think, I want to hear it. Messages reach me attached to a payment &mdash; a few sats, whatever you feel like. That is the entire spam filter, and it works.</p>
+
+    <div class="contact-card">
+      <p class="addr-label">Lightning address</p>
+      <code class="addr" id="ln-addr">bear23@coinos.io</code>
+      <div class="donate-actions">
+        <button type="button" class="toggle" data-copy="#ln-addr" data-copy-status="#ln-status">Copy address</button>
+        <a class="toggle" href="lightning:bear23@coinos.io">Open in wallet</a>
+      </div>
+      <p class="copy-status" id="ln-status" role="status" aria-live="polite"></p>
+      <p class="contact-note">Your wallet will show a message box before it pays &mdash; up to 512 characters. One sat is enough. I read every one, so leave a way to reach you if you want an answer.</p>
+    </div>
+
+    <h3 class="donate-sub-title">Or just send sats</h3>
+    <p class="donate-sub-lead">No message, nothing expected in return. On-chain, to keep the page running.</p>
     <div class="donate-body">
       <a class="qr-link" href="bitcoin:BC1QG2KL7KMNFHZDYZUX325T6RHVNPPQ8ELW0GE2RQ" aria-label="Open in your Bitcoin wallet"><svg class="qr" viewBox="0 0 33 33" role="img" aria-label="QR code for the Bitcoin donation address" shape-rendering="crispEdges"><rect width="33" height="33" fill="#fff"/><path d="M2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM14 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM17 2h1v1h-1zM18 2h1v1h-1zM19 2h1v1h-1zM22 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM27 2h1v1h-1zM28 2h1v1h-1zM29 2h1v1h-1zM30 2h1v1h-1zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM11 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM18 3h1v1h-1zM19 3h1v1h-1zM22 3h1v1h-1zM24 3h1v1h-1zM30 3h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM11 4h1v1h-1zM12 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM21 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM27 4h1v1h-1zM28 4h1v1h-1zM30 4h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM17 5h1v1h-1zM18 5h1v1h-1zM21 5h1v1h-1zM22 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM27 5h1v1h-1zM28 5h1v1h-1zM30 5h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM11 6h1v1h-1zM13 6h1v1h-1zM18 6h1v1h-1zM19 6h1v1h-1zM20 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM27 6h1v1h-1zM28 6h1v1h-1zM30 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM12 7h1v1h-1zM13 7h1v1h-1zM14 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM19 7h1v1h-1zM20 7h1v1h-1zM21 7h1v1h-1zM22 7h1v1h-1zM24 7h1v1h-1zM30 7h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM22 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM26 8h1v1h-1zM27 8h1v1h-1zM28 8h1v1h-1zM29 8h1v1h-1zM30 8h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM14 9h1v1h-1zM16 9h1v1h-1zM20 9h1v1h-1zM22 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM11 10h1v1h-1zM12 10h1v1h-1zM14 10h1v1h-1zM15 10h1v1h-1zM17 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM20 10h1v1h-1zM23 10h1v1h-1zM26 10h1v1h-1zM28 10h1v1h-1zM29 10h1v1h-1zM30 10h1v1h-1zM6 11h1v1h-1zM7 11h1v1h-1zM12 11h1v1h-1zM13 11h1v1h-1zM16 11h1v1h-1zM18 11h1v1h-1zM19 11h1v1h-1zM20 11h1v1h-1zM21 11h1v1h-1zM24 11h1v1h-1zM28 11h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM13 12h1v1h-1zM14 12h1v1h-1zM16 12h1v1h-1zM22 12h1v1h-1zM23 12h1v1h-1zM24 12h1v1h-1zM25 12h1v1h-1zM27 12h1v1h-1zM2 13h1v1h-1zM4 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM9 13h1v1h-1zM10 13h1v1h-1zM11 13h1v1h-1zM17 13h1v1h-1zM21 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM27 13h1v1h-1zM30 13h1v1h-1zM3 14h1v1h-1zM5 14h1v1h-1zM6 14h1v1h-1zM8 14h1v1h-1zM9 14h1v1h-1zM10 14h1v1h-1zM12 14h1v1h-1zM13 14h1v1h-1zM15 14h1v1h-1zM16 14h1v1h-1zM17 14h1v1h-1zM19 14h1v1h-1zM21 14h1v1h-1zM22 14h1v1h-1zM23 14h1v1h-1zM24 14h1v1h-1zM27 14h1v1h-1zM30 14h1v1h-1zM2 15h1v1h-1zM3 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM16 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM21 15h1v1h-1zM22 15h1v1h-1zM23 15h1v1h-1zM24 15h1v1h-1zM29 15h1v1h-1zM30 15h1v1h-1zM2 16h1v1h-1zM8 16h1v1h-1zM9 16h1v1h-1zM10 16h1v1h-1zM12 16h1v1h-1zM16 16h1v1h-1zM17 16h1v1h-1zM20 16h1v1h-1zM21 16h1v1h-1zM22 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM28 16h1v1h-1zM30 16h1v1h-1zM5 17h1v1h-1zM6 17h1v1h-1zM7 17h1v1h-1zM9 17h1v1h-1zM11 17h1v1h-1zM12 17h1v1h-1zM15 17h1v1h-1zM16 17h1v1h-1zM18 17h1v1h-1zM19 17h1v1h-1zM22 17h1v1h-1zM23 17h1v1h-1zM26 17h1v1h-1zM27 17h1v1h-1zM28 17h1v1h-1zM29 17h1v1h-1zM30 17h1v1h-1zM4 18h1v1h-1zM5 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM10 18h1v1h-1zM12 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM21 18h1v1h-1zM23 18h1v1h-1zM25 18h1v1h-1zM26 18h1v1h-1zM29 18h1v1h-1zM30 18h1v1h-1zM2 19h1v1h-1zM3 19h1v1h-1zM4 19h1v1h-1zM6 19h1v1h-1zM7 19h1v1h-1zM11 19h1v1h-1zM23 19h1v1h-1zM26 19h1v1h-1zM28 19h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM6 20h1v1h-1zM8 20h1v1h-1zM9 20h1v1h-1zM11 20h1v1h-1zM15 20h1v1h-1zM16 20h1v1h-1zM17 20h1v1h-1zM18 20h1v1h-1zM19 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM23 20h1v1h-1zM28 20h1v1h-1zM30 20h1v1h-1zM2 21h1v1h-1zM3 21h1v1h-1zM4 21h1v1h-1zM7 21h1v1h-1zM9 21h1v1h-1zM11 21h1v1h-1zM14 21h1v1h-1zM15 21h1v1h-1zM17 21h1v1h-1zM19 21h1v1h-1zM23 21h1v1h-1zM24 21h1v1h-1zM25 21h1v1h-1zM26 21h1v1h-1zM28 21h1v1h-1zM30 21h1v1h-1zM2 22h1v1h-1zM3 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM11 22h1v1h-1zM12 22h1v1h-1zM14 22h1v1h-1zM15 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM23 22h1v1h-1zM24 22h1v1h-1zM25 22h1v1h-1zM26 22h1v1h-1zM27 22h1v1h-1zM28 22h1v1h-1zM29 22h1v1h-1zM30 22h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM14 23h1v1h-1zM15 23h1v1h-1zM18 23h1v1h-1zM20 23h1v1h-1zM22 23h1v1h-1zM26 23h1v1h-1zM27 23h1v1h-1zM2 24h1v1h-1zM3 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM7 24h1v1h-1zM8 24h1v1h-1zM10 24h1v1h-1zM12 24h1v1h-1zM15 24h1v1h-1zM19 24h1v1h-1zM20 24h1v1h-1zM22 24h1v1h-1zM24 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM10 25h1v1h-1zM11 25h1v1h-1zM12 25h1v1h-1zM15 25h1v1h-1zM19 25h1v1h-1zM22 25h1v1h-1zM26 25h1v1h-1zM29 25h1v1h-1zM2 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM11 26h1v1h-1zM13 26h1v1h-1zM15 26h1v1h-1zM17 26h1v1h-1zM21 26h1v1h-1zM22 26h1v1h-1zM23 26h1v1h-1zM24 26h1v1h-1zM25 26h1v1h-1zM26 26h1v1h-1zM27 26h1v1h-1zM30 26h1v1h-1zM2 27h1v1h-1zM4 27h1v1h-1zM5 27h1v1h-1zM6 27h1v1h-1zM8 27h1v1h-1zM10 27h1v1h-1zM13 27h1v1h-1zM14 27h1v1h-1zM16 27h1v1h-1zM17 27h1v1h-1zM18 27h1v1h-1zM20 27h1v1h-1zM22 27h1v1h-1zM24 27h1v1h-1zM26 27h1v1h-1zM27 27h1v1h-1zM28 27h1v1h-1zM2 28h1v1h-1zM4 28h1v1h-1zM5 28h1v1h-1zM6 28h1v1h-1zM8 28h1v1h-1zM12 28h1v1h-1zM19 28h1v1h-1zM20 28h1v1h-1zM23 28h1v1h-1zM24 28h1v1h-1zM25 28h1v1h-1zM29 28h1v1h-1zM30 28h1v1h-1zM2 29h1v1h-1zM8 29h1v1h-1zM12 29h1v1h-1zM13 29h1v1h-1zM14 29h1v1h-1zM15 29h1v1h-1zM16 29h1v1h-1zM17 29h1v1h-1zM18 29h1v1h-1zM19 29h1v1h-1zM20 29h1v1h-1zM21 29h1v1h-1zM23 29h1v1h-1zM24 29h1v1h-1zM25 29h1v1h-1zM27 29h1v1h-1zM28 29h1v1h-1zM30 29h1v1h-1zM2 30h1v1h-1zM3 30h1v1h-1zM4 30h1v1h-1zM5 30h1v1h-1zM6 30h1v1h-1zM7 30h1v1h-1zM8 30h1v1h-1zM10 30h1v1h-1zM11 30h1v1h-1zM12 30h1v1h-1zM13 30h1v1h-1zM16 30h1v1h-1zM17 30h1v1h-1zM20 30h1v1h-1zM22 30h1v1h-1zM24 30h1v1h-1zM27 30h1v1h-1zM28 30h1v1h-1z" fill="#000"/></svg></a>
       <div class="donate-info">
         <p class="addr-label">Bitcoin address</p>
         <code class="addr" id="addr">bc1qg2kl7kmnfhzdyzux325t6rhvnppq8elw0ge2rq</code>
         <div class="donate-actions">
-          <button type="button" class="toggle" id="copy">Copy address</button>
+          <button type="button" class="toggle" data-copy="#addr" data-copy-status="#copy-status">Copy address</button>
           <a class="toggle" href="bitcoin:BC1QG2KL7KMNFHZDYZUX325T6RHVNPPQ8ELW0GE2RQ">Open in wallet</a>
         </div>
         <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
@@ -407,26 +442,34 @@
       set(!acronym.classList.contains('spelled'));
     });
 
-    var copyBtn = document.getElementById('copy');
-    var addrEl = document.getElementById('addr');
-    var status = document.getElementById('copy-status');
-    function selectAddr() {
-      var r = document.createRange(); r.selectNodeContents(addrEl);
-      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-    }
-    copyBtn.addEventListener('click', function () {
-      var text = addrEl.textContent.trim();
-      function ok() { status.textContent = 'Address copied.'; copyBtn.textContent = 'Copied'; setTimeout(function(){ copyBtn.textContent = 'Copy address'; }, 2000); }
-      function fallback() {
-        selectAddr();
-        var done = false;
-        try { done = document.execCommand('copy'); } catch (e) {}
-        status.textContent = done ? 'Address copied.' : 'Address selected. Press Ctrl+C or Cmd+C to copy it.';
-        if (done) ok();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (btn) {
+      var addrEl = document.querySelector(btn.getAttribute('data-copy'));
+      var status = document.querySelector(btn.getAttribute('data-copy-status'));
+      var label = btn.textContent;
+      if (!addrEl || !status) return;
+
+      function selectAddr() {
+        var r = document.createRange(); r.selectNodeContents(addrEl);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
       }
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(ok, fallback);
-      } else { fallback(); }
+      btn.addEventListener('click', function () {
+        var text = addrEl.textContent.trim();
+        function ok() {
+          status.textContent = 'Address copied.';
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = label; }, 2000);
+        }
+        function fallback() {
+          selectAddr();
+          var done = false;
+          try { done = document.execCommand('copy'); } catch (e) {}
+          status.textContent = done ? 'Address copied.' : 'Address selected. Press Ctrl+C or Cmd+C to copy it.';
+          if (done) ok();
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(ok, fallback);
+        } else { fallback(); }
+      });
     });
   })();
 </script>
